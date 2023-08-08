@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Robot Control</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .control-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-gap: 20px;
+            text-align: center;
+        }
+
+        .button {
+            width: 80px;
+            height: 80px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .up {
+            grid-column: 2;
+        }
+
+        .down {
+            grid-column: 2;
+        }
+
+        .left {
+            grid-row: 2;
+            grid-column: 1;
+        }
+
+        .right {
+            grid-row: 2;
+            grid-column: 3;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="control-container">
+        <!-- Add controls for driving the robot -->
+        <button class="button up" onmousedown="sendCommand('forward')" onmouseup="sendCommand('stop')">Forward</button>
+        <button class="button left" onmousedown="sendCommand('left')" onmouseup="sendCommand('stop')">Left</button>
+        <button class="button right" onmousedown="sendCommand('right')" onmouseup="sendCommand('stop')">Right</button>
+        <button class="button down" onmousedown="sendCommand('backward')" onmouseup="sendCommand('stop')">Backward</button>
+    </div>
+
+    <script>
+        var xhr = null; // Global variable to hold the XMLHttpRequest object
+
+        function sendCommand(command) {
+            // If an existing XMLHttpRequest is still running, abort it
+            if (xhr) {
+                xhr.abort();
+            }
+
+            // Create a new XMLHttpRequest object to make a POST request
+            xhr = new XMLHttpRequest();
+
+            // Define the endpoint for the drive route
+            var url = "/drive";
+
+            // Set up the request
+            xhr.open("POST", url, true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+            // Define the data to be sent (the selected command)
+            var data = "command=" + encodeURIComponent(command);
+
+            // Set up a callback for when the request completes
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    // You can handle the response here if needed
+                    console.log(xhr.responseText);
+                }
+            };
+
+            // Send the request
+            xhr.send(data);
+        }
+
+        // Event listener for arrow key events
+        document.addEventListener("keydown", function(event) {
+            switch (event.key) {
+                case "ArrowUp":
+                    sendCommand("forwardKey");
+                    break;
+                case "ArrowDown":
+                    sendCommand("backwardKey");
+                    break;
+                case "ArrowLeft":
+                    sendCommand("leftKey");
+                    break;
+                case "ArrowRight":
+                    sendCommand("rightKey");
+                    break;
+            }
+        });
+
+        // Event listener for arrow key release events
+        document.addEventListener("keyup", function(event) {
+            switch (event.key) {
+                case "ArrowUp":
+                    sendCommand("forwardStop");
+                    break;
+                case "ArrowDown":
+                    sendCommand("backwardStop");
+                    break;
+                case "ArrowLeft":
+                    sendCommand("leftStop");
+                    break;
+                case "ArrowRight":
+                    sendCommand("rightStop");
+                    break;
+            }
+        });
+    </script>
+</body>
+</html>
