@@ -1,7 +1,7 @@
 import gpiozero
 import time
 
-servo = gpiozero.AngularServo(12, min_pulse_width=0.0006, max_pulse_width=0.0023)
+servo = gpiozero.AngularServo(21, min_pulse_width=0.0006, max_pulse_width=0.0023)
 
 while True:
     servo.angle = 90

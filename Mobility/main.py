@@ -3,8 +3,8 @@ import time
 if __name__ == "__main__":
 
     # Initialise motors
-    MotorA = Motor(2,3)
-    MotorB = Motor(17,27)
+    MotorA = Motor(19,16)
+    MotorB = Motor(26,20)
 
     # Each motor can be controlled individually like so:
     MotorA.forward(100)
