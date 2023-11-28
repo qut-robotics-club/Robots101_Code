@@ -45,6 +45,11 @@
             grid-row: 2;
             grid-column: 3;
         }
+
+        .gripper {
+            grid-row: 3;
+            grid-column: 2;
+        }
     </style>
 </head>
 <body>
@@ -55,7 +60,9 @@
         <button class="button left" onmousedown="sendCommand('left')" onmouseup="sendCommand('stop')">Left</button>
         <button class="button right" onmousedown="sendCommand('right')" onmouseup="sendCommand('stop')">Right</button>
         <button class="button down" onmousedown="sendCommand('backward')" onmouseup="sendCommand('stop')">Backward</button>
+        <button class="button gripper" onmousedown="sendCommand('gripper')" onmouseup="sendCommand('gripperup')">Gripper</button>
     </div>
+    <img src="{{ url_for('video_feed') }}">
 
     <script>
         var xhr = null; // Global variable to hold the XMLHttpRequest object
