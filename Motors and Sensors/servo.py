@@ -3,10 +3,10 @@ import time
 
 # Set Board Up
 GPIO.setmode(GPIO.BCM)
-GPIO.setup(12, GPIO.OUT)
+GPIO.setup(21, GPIO.OUT)
 
 # Create PWM Object
-servo = GPIO.PWM(12,50)
+servo = GPIO.PWM(21,50)
 
 # Initialise servo
 servo.start(0)					# start(0) means start at PWM Duty Cycle of 0 (0-100%)

@@ -3,8 +3,8 @@ import RPi.GPIO as GPIO
 import time
 
 #set GPIO Pins Here
-GPIO_TRIGGER = 6
-GPIO_ECHO = 13
+GPIO_TRIGGER = 17
+GPIO_ECHO = 27
 
 def init():
     GPIO.setmode(GPIO.BCM)

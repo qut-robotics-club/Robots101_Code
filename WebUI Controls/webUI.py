@@ -68,8 +68,8 @@ def drive():
     return 'Command received: ' + command
 
 def driveThread():
-    MotorA = Motor(13, 19)
-    MotorB = Motor(3,2)
+    MotorA = Motor(19, 16)
+    MotorB = Motor(20,26)
     global cmdVel
     while True:
         Motor.move(cmdVel[0], cmdVel[1])

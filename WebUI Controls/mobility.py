@@ -52,8 +52,8 @@ class Motor():
         
     
     def backward(self, throttle=100):
-        self.forwardPWM.ChangeDutyCycle(0)
         self.reversePWM.ChangeDutyCycle(throttle)
+        self.forwardPWM.ChangeDutyCycle(0)
     
     def stop(self):
         self.forwardPWM.ChangeDutyCycle(0)
